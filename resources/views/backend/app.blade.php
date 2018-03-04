@@ -769,7 +769,7 @@
                         <ul>
                             <li class="status-online">
                                 <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                    <img src="/backend/assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
                                 </figure>
                                 <div class="profile-info">
                                     <span class="name">Joseph Doe Junior</span>
@@ -778,7 +778,7 @@
                             </li>
                             <li class="status-online">
                                 <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                    <img src="/backend/assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
                                 </figure>
                                 <div class="profile-info">
                                     <span class="name">Joseph Doe Junior</span>
@@ -787,7 +787,7 @@
                             </li>
                             <li class="status-offline">
                                 <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                    <img src="/backend/assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
                                 </figure>
                                 <div class="profile-info">
                                     <span class="name">Joseph Doe Junior</span>
