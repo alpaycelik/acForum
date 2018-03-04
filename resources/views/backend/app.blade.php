@@ -31,6 +31,8 @@
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="/backend/assets/stylesheets/theme-custom.css">
 
+    @yield('css')
+
     <!-- Head Libs -->
     <script src="/backend/assets/vendor/modernizr/modernizr.js"></script>
 
@@ -736,6 +738,7 @@
             </header>
 
             <!-- start: page -->
+            @yield('content')
             <!-- end: page -->
         </section>
     </div>
@@ -826,6 +829,8 @@
 
 <!-- Theme Initialization Files -->
 <script src="/backend/assets/javascripts/theme.init.js"></script>
+
+@yield('js')
 
 </body>
 </html>
