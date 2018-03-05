@@ -75,12 +75,12 @@ var handleThemePageControl = function() {
             $('.theme-list [data-theme]').closest('li').removeClass('active');
             $('.theme-list [data-theme="'+ $.cookie('theme') +'"]').closest('li').addClass('active');
         }
-        var cssFileSrc = 'assets/css/theme/' + $.cookie('theme') + '.css';
+        var cssFileSrc = '/frontend/assets/css/theme/' + $.cookie('theme') + '.css';
         $('#theme').attr('href', cssFileSrc);
     }
     
     $('.theme-list [data-theme]').live('click', function() {
-        var cssFileSrc = 'assets/css/theme/' + $(this).attr('data-theme') + '.css';
+        var cssFileSrc = '/frontend/assets/css/theme/' + $(this).attr('data-theme') + '.css';
         $('#theme').attr('href', cssFileSrc);
         $('.theme-list [data-theme]').not(this).closest('li').removeClass('active');
         $(this).closest('li').addClass('active');

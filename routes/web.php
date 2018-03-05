@@ -11,12 +11,22 @@
 |
 */
 
+
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('frontend.index');
 });
-Route::get('/admin', function () {
-    return view('backend.app');
+
+Route::group(['prefix' => 'admin'], function (){
+    Route::get('/', 'AdminController@get_index')->name('admin.index');
+    Route::get('/kategori', 'AdminController@get_category_list')->name('admin.category.list');
+    Route::get('/kategori/ekle', 'AdminController@get_category_add')->name('admin.category.add.get');
+    Route::post('/kategori/ekle', 'AdminController@post_category_add');
+    Route::get('/kategori/duzenle/{slug}', 'AdminController@get_category_edit')->name('admin.category.edit');
+    Route::post('/kategori/duzenle/{slug}', 'AdminController@post_category_edit');
 });
+
 
 // Auth::routes();
 // Authentication Routes...

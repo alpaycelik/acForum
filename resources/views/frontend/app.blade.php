@@ -39,7 +39,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="index.html" class="navbar-brand">
+            <a href="#" class="navbar-brand">
                 <span class="navbar-logo"></span>
                 <span class="brand-text">
                         Support Forum
@@ -142,7 +142,7 @@
 <!-- begin #footer-copyright -->
 <div id="footer-copyright" class="footer-copyright">
     <div class="container">
-        &copy; 2014 - 2015 SeanTheme All Right Reserved
+        &copy; 2014 - 2018 SeanTheme All Right Reserved
         <a href="#">Contact Us</a>
         <a href="#">Knowledge Base</a>
     </div>
