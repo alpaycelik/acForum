@@ -36,14 +36,17 @@
         <!-- begin container -->
         <div class="container">
             <!-- begin panel-forum -->
+            @foreach($categories as $category)
             <div class="panel panel-forum">
                 <!-- begin panel-heading -->
                 <div class="panel-heading">
-                    <h4 class="panel-title">Official Management District</h4>
+                    <h4 class="panel-title">{{ $category->title }}</h4>
                 </div>
                 <!-- end panel-heading -->
                 <!-- begin forum-list -->
+                @if($category->children()->count() > 0)
                 <ul class="forum-list">
+                    @foreach($category->children as $subcategory)
                     <li>
                         <!-- begin media -->
                         <div class="media">
@@ -53,13 +56,11 @@
                         <!-- begin info-container -->
                         <div class="info-container">
                             <div class="info">
-                                <h4 class="title"><a href="#">Announcement</a></h4>
-                                <p class="desc">
-                                    The latest official news, events , announcements, updates and other information released .
-                                </p>
+                                <h4 class="title"><a href="#">{{ $subcategory->title }}</a></h4>
+                                <p class="desc">{{ $subcategory->description }}</p>
                             </div>
                             <div class="total-count">
-                                <span class="total-post">1,293</span> <span class="divider">/</span> <span class="total-comment">9,291</span>
+                                <span class="total-post">{{ $subcategory->topics }}</span> <span class="divider">/</span> <span class="total-comment">{{ $subcategory->replies }}</span>
                             </div>
                             <div class="latest-post">
                                 <h4 class="title"><a href="#">Migrate from jQuery 1.8.x to jQuery 2.0.x</a></h4>
@@ -68,179 +69,12 @@
                         </div>
                         <!-- end info-container -->
                     </li>
-                    <li>
-                        <!-- begin media -->
-                        <div class="media">
-                            <img src="/frontend/assets/img/icon-cone.png" alt="" />
-                        </div>
-                        <!-- end media -->
-                        <!-- begin info-container -->
-                        <div class="info-container">
-                            <div class="info">
-                                <h4 class="title"><a href="#">Bug / Suggestion</a></h4>
-                                <p class="desc">
-                                    Template development proposals, content-related complaints and bug submission.
-                                </p>
-                            </div>
-                            <div class="total-count">
-                                <span class="total-post">1,293</span> <span class="divider">/</span> <span class="total-comment">9,291</span>
-                            </div>
-                            <div class="latest-post">
-                                <h4 class="title"><a href="#">Migrate from jQuery 1.8.x to jQuery 2.0.x</a></h4>
-                                <p class="time">Yesterday 10:49pm <a href="#" class="user">admin</a></p>
-                            </div>
-                        </div>
-                        <!-- end info-container -->
-                    </li>
+                    @endforeach
                 </ul>
+                @endif
                 <!-- end forum-list -->
             </div>
-            <!-- end panel-forum -->
-            <!-- begin panel-forum -->
-            <div class="panel panel-forum">
-                <!-- begin panel-heading -->
-                <div class="panel-heading">
-                    <h4 class="panel-title">General Bootstrap Discussion</h4>
-                </div>
-                <!-- end panel-heading -->
-                <!-- begin forum-list -->
-                <ul class="forum-list">
-                    <li>
-                        <!-- begin media -->
-                        <div class="media">
-                            <img src="/frontend/assets/img/icon-chat-bubble.png" alt="" />
-                        </div>
-                        <!-- end media -->
-                        <!-- begin info-container -->
-                        <div class="info-container">
-                            <div class="info">
-                                <h4 class="title"><a href="#">CSS</a></h4>
-                                <p class="desc">
-                                    The latest official news, events , announcements, updates and other information released .
-                                </p>
-                            </div>
-                            <div class="total-count">
-                                <span class="total-post">1,293</span> <span class="divider">/</span> <span class="total-comment">9,291</span>
-                            </div>
-                            <div class="latest-post">
-                                <h4 class="title"><a href="#">Migrate from jQuery 1.8.x to jQuery 2.0.x</a></h4>
-                                <p class="time">Yesterday 10:49pm <a href="#" class="user">admin</a></p>
-                            </div>
-                        </div>
-                        <!-- end info-container -->
-                    </li>
-                    <li>
-                        <!-- begin media -->
-                        <div class="media">
-                            <img src="/frontend/assets/img/icon-chat-bubble.png" alt="" />
-                        </div>
-                        <!-- end media -->
-                        <!-- begin info-container -->
-                        <div class="info-container">
-                            <div class="info">
-                                <h4 class="title"><a href="#">Javascript / jQuery</a></h4>
-                                <p class="desc">
-                                    Template introduction, installation, and integration in different framework.
-                                </p>
-                            </div>
-                            <div class="total-count">
-                                <span class="total-post">1,293</span> <span class="divider">/</span> <span class="total-comment">9,291</span>
-                            </div>
-                            <div class="latest-post">
-                                <h4 class="title"><a href="#">Migrate from jQuery 1.8.x to jQuery 2.0.x</a></h4>
-                                <p class="time">Yesterday 10:49pm <a href="#" class="user">admin</a></p>
-                            </div>
-                        </div>
-                        <!-- end info-container -->
-                    </li>
-                    <li>
-                        <!-- begin media -->
-                        <div class="media">
-                            <img src="/frontend/assets/img/icon-chat-bubble.png" alt="" />
-                        </div>
-                        <!-- end media -->
-                        <!-- begin info-container -->
-                        <div class="info-container">
-                            <div class="info">
-                                <h4 class="title"><a href="#">Twitter Bootstrap</a></h4>
-                                <p class="desc">
-                                    Template development proposals, content-related complaints and bug submission.
-                                </p>
-                            </div>
-                            <div class="total-count">
-                                <span class="total-post">1,293</span> <span class="divider">/</span> <span class="total-comment">9,291</span>
-                            </div>
-                            <div class="latest-post">
-                                <h4 class="title"><a href="#">Migrate from jQuery 1.8.x to jQuery 2.0.x</a></h4>
-                                <p class="time">Yesterday 10:49pm <a href="#" class="user">admin</a></p>
-                            </div>
-                        </div>
-                        <!-- end info-container -->
-                    </li>
-                </ul>
-                <!-- end forum-list -->
-            </div>
-            <!-- end panel-forum -->
-            <!-- begin panel-forum -->
-            <div class="panel panel-forum">
-                <!-- begin panel-heading -->
-                <div class="panel-heading">
-                    <h4 class="panel-title">Mobile Apps Discussion</h4>
-                </div>
-                <!-- end panel-heading -->
-                <!-- begin forum-list -->
-                <ul class="forum-list">
-                    <li>
-                        <!-- begin media -->
-                        <div class="media">
-                            <img src="/frontend/assets/img/icon-discussion-grey.png" alt="" />
-                        </div>
-                        <!-- end media -->
-                        <!-- begin info-container -->
-                        <div class="info-container">
-                            <div class="info">
-                                <h4 class="title"><a href="#">Android</a></h4>
-                                <p class="desc">
-                                    Template development proposals, content-related complaints and bug submission.
-                                </p>
-                            </div>
-                            <div class="total-count">
-                                <span class="total-post">1,293</span> <span class="divider">/</span> <span class="total-comment">9,291</span>
-                            </div>
-                            <div class="latest-post">
-                                <h4 class="title"><a href="#">Migrate from jQuery 1.8.x to jQuery 2.0.x</a></h4>
-                                <p class="time">Yesterday 10:49pm <a href="#" class="user">admin</a></p>
-                            </div>
-                        </div>
-                        <!-- end info-container -->
-                    </li>
-                    <li>
-                        <!-- begin media -->
-                        <div class="media">
-                            <img src="/frontend/assets/img/icon-discussion-grey.png" alt="" />
-                        </div>
-                        <!-- end media -->
-                        <!-- begin info-container -->
-                        <div class="info-container">
-                            <div class="info">
-                                <h4 class="title"><a href="#">iOS</a></h4>
-                                <p class="desc">
-                                    Template development proposals, content-related complaints and bug submission.
-                                </p>
-                            </div>
-                            <div class="total-count">
-                                <span class="total-post">1,293</span> <span class="divider">/</span> <span class="total-comment">9,291</span>
-                            </div>
-                            <div class="latest-post">
-                                <h4 class="title"><a href="#">Migrate from jQuery 1.8.x to jQuery 2.0.x</a></h4>
-                                <p class="time">Yesterday 10:49pm <a href="#" class="user">admin</a></p>
-                            </div>
-                        </div>
-                        <!-- end info-container -->
-                    </li>
-                </ul>
-                <!-- end forum-list -->
-            </div>
+            @endforeach
             <!-- end panel-forum -->
         </div>
         <!-- end container -->

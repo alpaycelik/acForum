@@ -37,12 +37,13 @@
     </div>
 @endsection
 @section('js')
-    <script src="/js/jquery.form.min.js"></script>
     <script src="/js/sweetalert2.min.js"></script>
+    <script src="/js/jquery.form.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(function() {
             $('form').ajaxForm({
                 success:function (response) {
+                    document.getElementById("form").reset(); // clear form input
                     swal(
                         response.baslik,
                         response.icerik,

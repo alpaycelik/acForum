@@ -15,7 +15,7 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('forum_id');
+            $table->unsignedInteger('categoriy_id');
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('post');
@@ -24,7 +24,7 @@ class CreateTopicsTable extends Migration
             $table->integer('replies');
             $table->timestamps();
 
-            $table->foreign('forum_id')->references('id')->on('forums');
+            $table->foreign('categoriy_id')->references('id')->on('categories');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('last_post_user')->references('id')->on('users');
         });

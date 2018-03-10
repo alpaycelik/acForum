@@ -48,10 +48,10 @@ class AdminController extends Controller
 
     public function post_category_edit($slug, Request $request){
         $validator = Validator::make($request->all(), [
-            'title' => 'required|unique:categories',
+            'title' => 'required',
         ]);
         if($validator->fails()) {
-            return response(['durum' => 'error', 'baslik' => 'Hatalı!', 'icerik' => 'Başlık değeri ya boştur ya da sistemde zaten kayıtlıdır']);
+            return response(['durum' => 'error', 'baslik' => 'Hatalı!', 'icerik' => 'Başlık değeri bırakılamaz']);
         }
         try{
             Category::where('slug', $slug)->update([
@@ -65,4 +65,63 @@ class AdminController extends Controller
         }
 
     }
+
+    public function post_category_delete(Request $request){
+        try{
+            Category::where('id', $request->id)->delete();
+            return response(['durum' => 'success', 'baslik' => 'Başarılı!', 'icerik' => 'Kategori düzenleme işlemi başarılı']);
+        }
+        catch (\Exception $e){
+            return response(['durum' => 'error', 'baslik' => 'Hatalı!', 'icerik' => 'Kategori düzenlenemedi..!', 'hata' => $e]);
+        }
+    }
+
+    public function get_category_sort(){
+        $categories = Category::where('parent_id', '=', 0)->orderBy('order','ASC')->get();
+        return view('backend.category-sort', ['categories' => $categories]);
+    }
+
+    public function post_category_sort(Request $request){
+
+        if(isset($request->categories)) {
+            $jsonDecoded = json_decode($request->categories,true);
+            function parseJsonArray($jsonArray, $parentID = "") {
+                $return = array();
+                foreach ($jsonArray as $subArray) {
+                    $returnSubSubArray = array();
+                    if (isset($subArray['children'])) {
+                        $returnSubSubArray = parseJsonArray($subArray['children'], $subArray['id']);
+                    }
+                    $return[] = array('id' => $subArray['id'], 'parentID' => $parentID);
+                    $return = array_merge($return, $returnSubSubArray);
+                }
+
+                return $return;
+            }
+
+           // dd(parseJsonArray($jsonDecoded));
+
+            $readbleArray = parseJsonArray($jsonDecoded);
+            foreach ($readbleArray as $key => $value) {
+                if (is_array($value)) {
+                    if(empty($value['parentID'])){
+                        $bos = intval(0);
+                    }else {
+                        $bos = intval($value['parentID']);
+                    }
+                    // update category parent_id and order
+                    $update = Category::where('id', $value['id'])->update([
+                            'parent_id' => $bos,
+                            'order' => intval($key)+1
+                        ]);
+                    //echo $bos."--".($key+1)."--".$value['id']."<br>";
+                }
+            }
+            if($update){
+                return response(['durum' => 'success', 'baslik' => 'Başarılı!', 'icerik' => 'Kategori düzenleme işlemi başarılı']);
+            }
+                return response(['durum' => 'error', 'baslik' => 'Hatalı!', 'icerik' => 'Kategori düzenlenemedi..!', 'hata' => $e]);
+        }
+    }
+
 }

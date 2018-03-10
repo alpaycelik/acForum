@@ -14,17 +14,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', 'HomeController@get_index');
 
 Route::group(['prefix' => 'admin'], function (){
     Route::get('/', 'AdminController@get_index')->name('admin.index');
-    Route::get('/kategori', 'AdminController@get_category_list')->name('admin.category.list');
-    Route::get('/kategori/ekle', 'AdminController@get_category_add')->name('admin.category.add.get');
-    Route::post('/kategori/ekle', 'AdminController@post_category_add');
-    Route::get('/kategori/duzenle/{slug}', 'AdminController@get_category_edit')->name('admin.category.edit');
-    Route::post('/kategori/duzenle/{slug}', 'AdminController@post_category_edit');
+    Route::get('/category', 'AdminController@get_category_list')->name('admin.category.list');
+    Route::get('/category/add', 'AdminController@get_category_add')->name('admin.category.add.get');
+    Route::post('/category/add', 'AdminController@post_category_add');
+    Route::get('/category/edit/{slug}', 'AdminController@get_category_edit')->name('admin.category.edit');
+    Route::post('/category/edit/{slug}', 'AdminController@post_category_edit');
+    Route::post('/category/delete', 'AdminController@post_category_delete');
+    Route::get('/category/sort', 'AdminController@get_category_sort')->name('admin.category.sort');
+    Route::post('/category/sort', 'AdminController@post_category_sort');
+
 });
 
 

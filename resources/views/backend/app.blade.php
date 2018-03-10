@@ -9,6 +9,7 @@
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -278,21 +279,12 @@
                 <div class="nano-content">
                     <nav id="menu" class="nav-main" role="navigation">
                         <ul class="nav nav-main">
-                            <li>
-                                <a href="{{ route('admin.index') }}">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
-                                    <span>Anasayfa</span>
-                                </a>
-                            </li>
+                            <li><a href="{{ route('admin.index') }}"><i class="fa fa-home" aria-hidden="true"></i><span>Anasayfa</span></a></li>
                             <li class="nav-parent nav-expanded nav-active">
-                                <a>
-                                    <i class="fa fa-forumbee" aria-hidden="true"></i>
-                                    <span>Forum</span>
-                                </a>
+                                <a><i class="fa fa-forumbee" aria-hidden="true"></i><span>Forum</span></a>
                                 <ul class="nav nav-children">
-                                    <li>
-                                        <a href="{{ route('admin.category.list') }}">Kategoriler</a>
-                                    </li>
+                                    <li><a href="{{ route('admin.category.list') }}">Kategoriler</a></li>
+                                    <li><a href="{{ route('admin.category.sort') }}">Kategori Düzenle</a></li>
                                 </ul>
                             </li>
                         </ul>
