@@ -51,21 +51,28 @@
                         <!-- begin media -->
                         <div class="media">
                             <img src="/frontend/assets/img/icon-gold-note.png" alt="" />
+                            <!--<i class="fa fa-book fa-2x"></i>-->
                         </div>
                         <!-- end media -->
                         <!-- begin info-container -->
                         <div class="info-container">
                             <div class="info">
-                                <h4 class="title"><a href="#">{{ $subcategory->title }}</a></h4>
+                                <h4 class="title"><a href="{{ route('category.list', ['slug' => $subcategory->slug] ) }}">{{ $subcategory->title }}</a></h4>
                                 <p class="desc">{{ $subcategory->description }}</p>
                             </div>
                             <div class="total-count">
                                 <span class="total-post">{{ $subcategory->topics }}</span> <span class="divider">/</span> <span class="total-comment">{{ $subcategory->replies }}</span>
                             </div>
+                            @if($subcategory->last_topic()->count() > 0)
                             <div class="latest-post">
-                                <h4 class="title"><a href="#">Migrate from jQuery 1.8.x to jQuery 2.0.x</a></h4>
-                                <p class="time">Yesterday 10:49pm <a href="#" class="user">admin</a></p>
+                                <h4 class="title"><a href="{{ $subcategory->last_topic['slug'] }}">{{ $subcategory->last_topic['title'] }}</a></h4>
+                                <p class="time">{{ \Carbon\Carbon::parse($subcategory->last_topic['created_at'])->diffForHumans() }} | <a href="{{ $subcategory->last_user['slug'] }}" class="user">{{ $subcategory->last_user['name'] }}</a></p>
                             </div>
+                            @else
+                                <div class="latest-post">
+                                <h4 class="title">Henüz konu eklenmedi</h4>
+                                </div>
+                            @endif
                         </div>
                         <!-- end info-container -->
                     </li>

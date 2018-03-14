@@ -20,8 +20,8 @@ class CreateCategoriesTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('description')->nullable();
-            $table->string('last_post_title')->nullable();
-            $table->string('last_post_user')->nullable();
+            $table->integer('last_topic_id')->nullable();
+            $table->integer('last_user_id')->nullable();
             $table->integer('topics')->default(0);
             $table->integer('replies')->default(0);
             $table->timestamps();

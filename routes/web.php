@@ -15,6 +15,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@get_index');
+Route::get('/forum/{slug}', 'HomeController@get_forum')->name('category.list');
+Route::get('/konu/ekle/{id}', 'HomeController@get_topic_add')->name('topic.add');
+Route::post('/konu/ekle/{id}', 'HomeController@post_topic_add')->name('topic.add.ajax');
+Route::get('/konu/{slug}', 'HomeController@get_topic_view')->name('topic.view');
 
 Route::group(['prefix' => 'admin'], function (){
     Route::get('/', 'AdminController@get_index')->name('admin.index');
@@ -26,7 +30,6 @@ Route::group(['prefix' => 'admin'], function (){
     Route::post('/category/delete', 'AdminController@post_category_delete');
     Route::get('/category/sort', 'AdminController@get_category_sort')->name('admin.category.sort');
     Route::post('/category/sort', 'AdminController@post_category_sort');
-
 });
 
 

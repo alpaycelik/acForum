@@ -15,16 +15,16 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('categoriy_id');
+            $table->unsignedInteger('category_id');
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('post');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('last_post_user');
-            $table->integer('replies');
+            $table->unsignedInteger('last_post_user')->default(0);
+            $table->integer('replies')->default(0);
             $table->timestamps();
 
-            $table->foreign('categoriy_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('last_post_user')->references('id')->on('users');
         });

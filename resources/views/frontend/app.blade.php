@@ -9,11 +9,13 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="/frontend/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/frontend/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/frontend/assets/css/modal_form.css" rel="stylesheet" />
     <link href="/frontend/assets/css/animate.min.css" rel="stylesheet" />
     <link href="/frontend/assets/css/style.min.css" rel="stylesheet" />
     <link href="/frontend/assets/css/style-responsive.min.css" rel="stylesheet" />
@@ -29,7 +31,7 @@
 </head>
 <body>
 <!-- begin #header -->
-<div id="header" class="header navbar navbar-default navbar-fixed-top">
+<div id="header" class="header navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- begin container -->
     <div class="container">
         <!-- begin navbar-header -->
@@ -39,7 +41,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <span class="navbar-logo"></span>
                 <span class="brand-text">
                         Support Forum
@@ -58,8 +60,7 @@
                         </div>
                     </form>
                 </li>
-                <li><a href="javascript:;">Create Account</a></li>
-                <li><a href="javascript:;">Sign In</a></li>
+                <li><a href="#"  data-toggle="modal" data-target="#login-modal">Giriş/Kayıt Ol</a></li>
             </ul>
         </div>
         <!-- end #header-navbar -->
@@ -67,6 +68,84 @@
     <!-- end container -->
 </div>
 <!-- end #header -->
+<!-- BEGIN # MODAL LOGIN -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" align="center">
+                <h4>Giriş/Kayıt Ol</h4>
+            </div>
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+                <!-- Begin # Login Form -->
+                <form id="login-form">
+                    <div class="modal-body">
+
+                        <input id="login_username" class="form-control" type="text" placeholder="Username" required>
+                        <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Beni Hatırla
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Giriş</button>
+                        </div>
+                        <div>
+                            <button id="login_lost_btn" type="button" class="btn btn-link">Şifremi Unuttum?</button>
+                            <button id="login_register_btn" type="button" class="btn btn-link">Kayıt Ol</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End # Login Form -->
+
+                <!-- Begin | Lost Password Form -->
+                <form id="lost-form" style="display:none;">
+                    <div class="modal-body">
+
+                        <input id="lost_email" class="form-control" type="text" placeholder="E-Mail" required>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Gönder</button>
+                        </div>
+                        <div>
+                            <button id="lost_login_btn" type="button" class="btn btn-link">Giriş</button>
+                            <button id="lost_register_btn" type="button" class="btn btn-link">Kayıt Ol</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Lost Password Form -->
+
+                <!-- Begin | Register Form -->
+                <form id="register-form" style="display:none;">
+                    <div class="modal-body">
+
+                        <input id="register_username" class="form-control" type="text" placeholder="Username" required>
+                        <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+                        <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Kayıt Ol</button>
+                        </div>
+                        <div>
+                            <button id="register_login_btn" type="button" class="btn btn-link">Giriş</button>
+                            <button id="register_lost_btn" type="button" class="btn btn-link">Şifremi Unuttum?</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+
+            </div>
+            <!-- End # DIV Form -->
+
+        </div>
+    </div>
+</div>
+<!-- END # MODAL LOGIN -->
 
 @yield('content')
 
@@ -165,6 +244,10 @@
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="/frontend/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+<!--<script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>-->
 <script src="/frontend/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 <script src="/frontend/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!--[if lt IE 9]>
@@ -174,6 +257,7 @@
 <![endif]-->
 <script src="/frontend/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
 <script src="/frontend/assets/js/apps.min.js"></script>
+<script src="/frontend/assets/js/modal_form.js"></script>
 <!-- ================== END BASE JS ================== -->
 
 <script>
